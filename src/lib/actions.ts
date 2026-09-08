@@ -127,6 +127,10 @@ export async function submitContactRequest(formData: FormData) {
     return { success: true, id: requestId };
   } catch (error: any) {
     console.error('Submit contact error:', error);
+    if (error instanceof z.ZodError) {
+      const firstError = error.errors[0];
+      return { success: false, error: firstError?.message || 'Données du formulaire invalides' };
+    }
     return { success: false, error: error.message || 'Erreur lors de la soumission' };
   }
 }

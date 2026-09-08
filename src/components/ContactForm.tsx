@@ -242,6 +242,7 @@ export default function ContactForm() {
         <textarea
           name="message"
           required
+          minLength={10}
           rows={3}
           placeholder="Scope of work, project location, technical specifications..."
           className={`${inputClass} resize-none`}
